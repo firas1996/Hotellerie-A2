@@ -3,6 +3,7 @@ using Hotellerie_A2.Models.HotellerieModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotellerie_A2.Migrations
 {
     [DbContext(typeof(HotellerieDbContext))]
-    partial class HotellerieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251201084441_ajoutTel")]
+    partial class ajoutTel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,31 +23,6 @@ namespace Hotellerie_A2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Hotellerie_A2.Models.HotellerieModel.Appreciation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Commentaire")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NomPers")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.ToTable("Appreciations");
-                });
 
             modelBuilder.Entity("Hotellerie_A2.Models.HotellerieModel.Hotel", b =>
                 {
@@ -77,22 +55,6 @@ namespace Hotellerie_A2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Hotels");
-                });
-
-            modelBuilder.Entity("Hotellerie_A2.Models.HotellerieModel.Appreciation", b =>
-                {
-                    b.HasOne("Hotellerie_A2.Models.HotellerieModel.Hotel", "Hotel")
-                        .WithMany("Appreciations")
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hotel");
-                });
-
-            modelBuilder.Entity("Hotellerie_A2.Models.HotellerieModel.Hotel", b =>
-                {
-                    b.Navigation("Appreciations");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,5 +16,7 @@ namespace Hotellerie_A2.Models.HotellerieModel
         [Display(Name ="Site Web")]
         [RegularExpression(@"^(http|https)://([\w-]+.)[\w-]+(/[\w- ./?%&=]*)?$", ErrorMessage = "The SiteWeb property must be a valid URL")]
         public string SiteWeb { get; set; }
+        public string Tel { get; set; }
+        public virtual ICollection<Appreciation>? Appreciations { get; set; } = new List<Appreciation>();
     }
 }
